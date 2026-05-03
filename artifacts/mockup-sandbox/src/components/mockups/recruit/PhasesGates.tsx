@@ -324,7 +324,7 @@ export function PhasesGates() {
                     {PHASE_DETAILS.map((phase, idx) => (
                       <div key={idx} className="relative flex items-center justify-between group">
                         <div className="flex items-center space-x-4 w-full bg-white p-3 rounded-lg border border-slate-100 shadow-sm group-hover:border-slate-300 transition-colors z-10">
-                          <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center border-2 \${
+                          <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center border-2 ${
                             phase.status === 'completed' ? 'bg-emerald-500 border-emerald-500 text-white' : 
                             phase.status === 'active' ? 'bg-white border-blue-500 text-blue-500 shadow-[0_0_0_3px_rgba(59,130,246,0.1)]' : 
                             'bg-white border-slate-300 text-slate-300'
@@ -332,7 +332,7 @@ export function PhasesGates() {
                             {phase.status === 'completed' ? <CheckCircle2 className="w-4 h-4" /> : <Circle className="w-3 h-3 fill-current" />}
                           </div>
                           <div className="flex-1 flex justify-between items-center">
-                            <span className={`text-sm font-medium \${phase.status === 'upcoming' ? 'text-slate-500' : 'text-slate-900'}`}>
+                            <span className={`text-sm font-medium ${phase.status === 'upcoming' ? 'text-slate-500' : 'text-slate-900'}`}>
                               {phase.name}
                             </span>
                             <span className="text-xs text-slate-500 flex items-center">
@@ -367,7 +367,7 @@ export function PhasesGates() {
                             className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500"
                           />
                         </div>
-                        <span className={`text-sm \${criterion.checked ? 'text-slate-500 line-through' : 'text-slate-700 font-medium group-hover:text-slate-900'}`}>
+                        <span className={`text-sm ${criterion.checked ? 'text-slate-500 line-through' : 'text-slate-700 font-medium group-hover:text-slate-900'}`}>
                           {criterion.label}
                         </span>
                       </label>
@@ -388,13 +388,13 @@ export function PhasesGates() {
                       <div key={idx} className="p-4 rounded-lg border border-slate-200 bg-white">
                         <div className="flex items-start justify-between">
                           <div className="flex items-start space-x-3">
-                            <ShieldAlert className={`w-5 h-5 mt-0.5 \${risk.severity === 'high' ? 'text-red-500' : 'text-orange-500'}`} />
+                            <ShieldAlert className={`w-5 h-5 mt-0.5 ${risk.severity === 'high' ? 'text-red-500' : 'text-orange-500'}`} />
                             <div>
                               <h4 className="text-sm font-semibold text-slate-900">{risk.title}</h4>
                               <p className="text-sm text-slate-600 mt-1">{risk.notes}</p>
                             </div>
                           </div>
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider \${
+                          <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
                             risk.severity === 'high' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
                           }`}>
                             {risk.severity}
