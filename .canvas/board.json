@@ -1,0 +1,239 @@
+{
+  "version": "1.0",
+  "description": "RecruitStream canvas board — 20 mockup pages + live app artifact",
+  "exportedAt": "2026-05-03T12:07:58.325Z",
+  "shapes": [
+    {
+      "shapeId": "artifact:v2:51799092:52c3c2ed-1e7c-4f21-b04f-0fc723cd2e8c:artifacts/web",
+      "shapeType": "iframe",
+      "componentName": "RecruitStream",
+      "componentPath": "",
+      "x": 5560,
+      "y": -540,
+      "w": 1299,
+      "h": 1057,
+      "state": "live",
+      "note": "Live app artifact — auto-managed by Replit"
+    },
+    {
+      "shapeId": "pg-dashboard",
+      "shapeType": "iframe",
+      "componentName": "Dashboard",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Dashboard.tsx",
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-candidates",
+      "shapeType": "iframe",
+      "componentName": "Candidates",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Candidates.tsx",
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-jobs",
+      "shapeType": "iframe",
+      "componentName": "Jobs",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Jobs.tsx",
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-companies",
+      "shapeType": "iframe",
+      "componentName": "Companies",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Companies.tsx",
+      "x": 4080,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-pipeline",
+      "shapeType": "iframe",
+      "componentName": "Pipeline",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Pipeline.tsx",
+      "x": 0,
+      "y": 980,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-placements",
+      "shapeType": "iframe",
+      "componentName": "Placements",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Placements.tsx",
+      "x": 1360,
+      "y": 980,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-projects",
+      "shapeType": "iframe",
+      "componentName": "Projects",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Projects.tsx",
+      "x": 2720,
+      "y": 980,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-activities",
+      "shapeType": "iframe",
+      "componentName": "Activities",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Activities.tsx",
+      "x": 4080,
+      "y": 980,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-contacts",
+      "shapeType": "iframe",
+      "componentName": "Contacts",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Contacts.tsx",
+      "x": 0,
+      "y": 1960,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-clients",
+      "shapeType": "iframe",
+      "componentName": "Clients",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Clients.tsx",
+      "x": 1360,
+      "y": 1960,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-sows",
+      "shapeType": "iframe",
+      "componentName": "SOWs",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/SOWs.tsx",
+      "x": 2720,
+      "y": 1960,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-changeorders",
+      "shapeType": "iframe",
+      "componentName": "Change Orders",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/ChangeOrders.tsx",
+      "x": 4080,
+      "y": 1960,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-documents",
+      "shapeType": "iframe",
+      "componentName": "Documents",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Documents.tsx",
+      "x": 0,
+      "y": 2940,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-financials",
+      "shapeType": "iframe",
+      "componentName": "Financials",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Financials.tsx",
+      "x": 1360,
+      "y": 2940,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-resources",
+      "shapeType": "iframe",
+      "componentName": "Resources",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Resources.tsx",
+      "x": 2720,
+      "y": 2940,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-planning",
+      "shapeType": "iframe",
+      "componentName": "Planning",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Planning.tsx",
+      "x": 4080,
+      "y": 2940,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-phases",
+      "shapeType": "iframe",
+      "componentName": "Phases",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/PhasesGates.tsx",
+      "x": 0,
+      "y": 3920,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-forecasting",
+      "shapeType": "iframe",
+      "componentName": "Forecasting",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Forecasting.tsx",
+      "x": 1360,
+      "y": 3920,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-onboarding",
+      "shapeType": "iframe",
+      "componentName": "Onboarding",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Onboarding.tsx",
+      "x": 2720,
+      "y": 3920,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    },
+    {
+      "shapeId": "pg-integrations",
+      "shapeType": "iframe",
+      "componentName": "Integrations",
+      "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Integrations.tsx",
+      "x": 4080,
+      "y": 3920,
+      "w": 1280,
+      "h": 900,
+      "state": "live"
+    }
+  ]
+}
