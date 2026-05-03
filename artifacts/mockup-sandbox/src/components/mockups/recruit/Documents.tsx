@@ -25,7 +25,7 @@ import {
   DropdownMenuContent, 
   DropdownMenuItem, 
   DropdownMenuTrigger 
-} from "../../../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 interface Document {
   id: string;
