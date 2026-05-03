@@ -227,7 +227,7 @@ export function PhasesGates() {
                         <div className="w-24 h-2 bg-slate-100 rounded-full overflow-hidden">
                           <div 
                             className={`h-full rounded-full ${project.completionPct > 80 ? 'bg-emerald-500' : project.completionPct < 30 ? 'bg-orange-500' : 'bg-blue-500'}`}
-                            style={{ width: \`\${project.completionPct}%\` }}
+                            style={{ width: `${project.completionPct}%` }}
                           />
                         </div>
                         <span className="text-xs font-medium text-slate-600 w-8">{project.completionPct}%</span>
@@ -310,7 +310,7 @@ export function PhasesGates() {
                   <div className="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-blue-600 rounded-full transition-all duration-500"
-                      style={{ width: \`\${selectedProject.completionPct}%\` }}
+                      style={{ width: `${selectedProject.completionPct}%` }}
                     />
                   </div>
                 </div>
