@@ -3,20 +3,37 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: RecruitStream staffing & project management API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
-    description: Health operations
+  - name: dashboard
+  - name: candidates
+  - name: jobs
+  - name: companies
+  - name: contacts
+  - name: clients
+  - name: placements
+  - name: projects
+  - name: activities
+  - name: documents
+  - name: financials
+  - name: resources
+  - name: sows
+  - name: changeOrders
+  - name: phases
+  - name: forecasting
+  - name: onboarding
+  - name: integrations
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +41,1336 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  # ── Dashboard ──────────────────────────────────────────────────────────────
+  /dashboard/summary:
+    get:
+      operationId: getDashboardSummary
+      tags: [dashboard]
+      summary: KPI summary cards
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardSummary"
+
+  /dashboard/pipeline-stats:
+    get:
+      operationId: getDashboardPipelineStats
+      tags: [dashboard]
+      summary: Pipeline stage breakdown
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PipelineStat"
+
+  /dashboard/recent-activities:
+    get:
+      operationId: getDashboardRecentActivities
+      tags: [dashboard]
+      summary: Recent activity feed
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Activity"
+
+  # ── Candidates ─────────────────────────────────────────────────────────────
+  /candidates:
+    get:
+      operationId: listCandidates
+      tags: [candidates]
+      summary: List all candidates
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Candidate"
+    post:
+      operationId: createCandidate
+      tags: [candidates]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCandidateBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Candidate"
+
+  /candidates/{id}:
+    get:
+      operationId: getCandidate
+      tags: [candidates]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Candidate"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateCandidate
+      tags: [candidates]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCandidateBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Candidate"
+    delete:
+      operationId: deleteCandidate
+      tags: [candidates]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Jobs ───────────────────────────────────────────────────────────────────
+  /jobs:
+    get:
+      operationId: listJobs
+      tags: [jobs]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Job"
+    post:
+      operationId: createJob
+      tags: [jobs]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateJobBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+
+  /jobs/{id}:
+    get:
+      operationId: getJob
+      tags: [jobs]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+    patch:
+      operationId: updateJob
+      tags: [jobs]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJobBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+    delete:
+      operationId: deleteJob
+      tags: [jobs]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Companies ──────────────────────────────────────────────────────────────
+  /companies:
+    get:
+      operationId: listCompanies
+      tags: [companies]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Company"
+    post:
+      operationId: createCompany
+      tags: [companies]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCompanyBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+
+  /companies/{id}:
+    get:
+      operationId: getCompany
+      tags: [companies]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+    patch:
+      operationId: updateCompany
+      tags: [companies]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCompanyBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+    delete:
+      operationId: deleteCompany
+      tags: [companies]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Contacts ───────────────────────────────────────────────────────────────
+  /contacts:
+    get:
+      operationId: listContacts
+      tags: [contacts]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Contact"
+    post:
+      operationId: createContact
+      tags: [contacts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateContactBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+
+  /contacts/{id}:
+    get:
+      operationId: getContact
+      tags: [contacts]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+    patch:
+      operationId: updateContact
+      tags: [contacts]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateContactBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Contact"
+    delete:
+      operationId: deleteContact
+      tags: [contacts]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Clients ────────────────────────────────────────────────────────────────
+  /clients:
+    get:
+      operationId: listClients
+      tags: [clients]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Client"
+    post:
+      operationId: createClient
+      tags: [clients]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateClientBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Client"
+
+  /clients/{id}:
+    get:
+      operationId: getClient
+      tags: [clients]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Client"
+    patch:
+      operationId: updateClient
+      tags: [clients]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateClientBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Client"
+    delete:
+      operationId: deleteClient
+      tags: [clients]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Placements ─────────────────────────────────────────────────────────────
+  /placements:
+    get:
+      operationId: listPlacements
+      tags: [placements]
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Placement"
+    post:
+      operationId: createPlacement
+      tags: [placements]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePlacementBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Placement"
+
+  /placements/{id}:
+    get:
+      operationId: getPlacement
+      tags: [placements]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Placement"
+    patch:
+      operationId: updatePlacement
+      tags: [placements]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePlacementBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Placement"
+    delete:
+      operationId: deletePlacement
+      tags: [placements]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Projects ───────────────────────────────────────────────────────────────
+  /projects:
+    get:
+      operationId: listProjects
+      tags: [projects]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+    post:
+      operationId: createProject
+      tags: [projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateProjectBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+
+  /projects/{id}:
+    get:
+      operationId: getProject
+      tags: [projects]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+    patch:
+      operationId: updateProject
+      tags: [projects]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProjectBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Project"
+    delete:
+      operationId: deleteProject
+      tags: [projects]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Activities ─────────────────────────────────────────────────────────────
+  /activities:
+    get:
+      operationId: listActivities
+      tags: [activities]
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+        - name: candidateId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Activity"
+    post:
+      operationId: createActivity
+      tags: [activities]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateActivityBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activity"
+
+  /activities/{id}:
+    get:
+      operationId: getActivity
+      tags: [activities]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Activity"
+    delete:
+      operationId: deleteActivity
+      tags: [activities]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Documents ──────────────────────────────────────────────────────────────
+  /documents:
+    get:
+      operationId: listDocuments
+      tags: [documents]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+    post:
+      operationId: createDocument
+      tags: [documents]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDocumentBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+
+  /documents/{id}:
+    get:
+      operationId: getDocument
+      tags: [documents]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+    delete:
+      operationId: deleteDocument
+      tags: [documents]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Financials ─────────────────────────────────────────────────────────────
+  /financials:
+    get:
+      operationId: listFinancials
+      tags: [financials]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Financial"
+    post:
+      operationId: createFinancial
+      tags: [financials]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFinancialBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Financial"
+
+  /financials/{id}:
+    get:
+      operationId: getFinancial
+      tags: [financials]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Financial"
+    patch:
+      operationId: updateFinancial
+      tags: [financials]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateFinancialBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Financial"
+
+  # ── Resources ──────────────────────────────────────────────────────────────
+  /resources:
+    get:
+      operationId: listResources
+      tags: [resources]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Resource"
+    post:
+      operationId: createResource
+      tags: [resources]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateResourceBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+
+  /resources/{id}:
+    get:
+      operationId: getResource
+      tags: [resources]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+    patch:
+      operationId: updateResource
+      tags: [resources]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateResourceBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+
+  # ── SOWs ───────────────────────────────────────────────────────────────────
+  /sows:
+    get:
+      operationId: listSows
+      tags: [sows]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Sow"
+    post:
+      operationId: createSow
+      tags: [sows]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSowBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sow"
+
+  /sows/{id}:
+    get:
+      operationId: getSow
+      tags: [sows]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sow"
+    patch:
+      operationId: updateSow
+      tags: [sows]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSowBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sow"
+    delete:
+      operationId: deleteSow
+      tags: [sows]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Change Orders ──────────────────────────────────────────────────────────
+  /change-orders:
+    get:
+      operationId: listChangeOrders
+      tags: [changeOrders]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ChangeOrder"
+    post:
+      operationId: createChangeOrder
+      tags: [changeOrders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateChangeOrderBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeOrder"
+
+  /change-orders/{id}:
+    get:
+      operationId: getChangeOrder
+      tags: [changeOrders]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeOrder"
+    patch:
+      operationId: updateChangeOrder
+      tags: [changeOrders]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateChangeOrderBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeOrder"
+
+  # ── Phases & Gates ─────────────────────────────────────────────────────────
+  /phases:
+    get:
+      operationId: listPhases
+      tags: [phases]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Phase"
+    post:
+      operationId: createPhase
+      tags: [phases]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePhaseBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Phase"
+
+  /phases/{id}:
+    get:
+      operationId: getPhase
+      tags: [phases]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Phase"
+    patch:
+      operationId: updatePhase
+      tags: [phases]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePhaseBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Phase"
+
+  # ── Forecasting ────────────────────────────────────────────────────────────
+  /forecasts:
+    get:
+      operationId: listForecasts
+      tags: [forecasting]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Forecast"
+    post:
+      operationId: createForecast
+      tags: [forecasting]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateForecastBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Forecast"
+
+  /forecasts/{id}:
+    get:
+      operationId: getForecast
+      tags: [forecasting]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Forecast"
+    patch:
+      operationId: updateForecast
+      tags: [forecasting]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateForecastBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Forecast"
+
+  # ── Onboarding ─────────────────────────────────────────────────────────────
+  /onboarding:
+    get:
+      operationId: listOnboardingTasks
+      tags: [onboarding]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OnboardingTask"
+    post:
+      operationId: createOnboardingTask
+      tags: [onboarding]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOnboardingTaskBody"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OnboardingTask"
+
+  /onboarding/{id}:
+    get:
+      operationId: getOnboardingTask
+      tags: [onboarding]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OnboardingTask"
+    patch:
+      operationId: updateOnboardingTask
+      tags: [onboarding]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateOnboardingTaskBody"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OnboardingTask"
+
+  # ── Integrations ───────────────────────────────────────────────────────────
+  /integrations:
+    get:
+      operationId: listIntegrations
+      tags: [integrations]
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Integration"
+
+  /integrations/{id}/toggle:
+    post:
+      operationId: toggleIntegration
+      tags: [integrations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Integration"
+
 components:
   schemas:
     HealthStatus:
@@ -31,6 +1378,1077 @@ components:
       properties:
         status:
           type: string
-      required:
-        - status
+      required: [status]
 
+    # ── Dashboard ─────────────────────────────────────────────────────────────
+    DashboardSummary:
+      type: object
+      properties:
+        totalCandidates:
+          type: integer
+        openJobs:
+          type: integer
+        activeClients:
+          type: integer
+        totalRevenue:
+          type: number
+        activeCandidates:
+          type: integer
+        submissionsThisMonth:
+          type: integer
+        placementsThisMonth:
+          type: integer
+        avgDaysToPlace:
+          type: number
+      required: [totalCandidates, openJobs, activeClients, totalRevenue, activeCandidates, submissionsThisMonth, placementsThisMonth, avgDaysToPlace]
+
+    PipelineStat:
+      type: object
+      properties:
+        stage:
+          type: string
+        count:
+          type: integer
+      required: [stage, count]
+
+    # ── Candidate ─────────────────────────────────────────────────────────────
+    Candidate:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        salary:
+          type: string
+        availability:
+          type: string
+        visa:
+          type: string
+        linkedIn:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, email, status, createdAt, updatedAt]
+
+    CreateCandidateBody:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        salary:
+          type: string
+        availability:
+          type: string
+        visa:
+          type: string
+        linkedIn:
+          type: string
+        notes:
+          type: string
+      required: [name, email]
+
+    UpdateCandidateBody:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        salary:
+          type: string
+        availability:
+          type: string
+        visa:
+          type: string
+        notes:
+          type: string
+
+    # ── Job ───────────────────────────────────────────────────────────────────
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        company:
+          type: string
+        location:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        priority:
+          type: string
+        salary:
+          type: string
+        openings:
+          type: integer
+        description:
+          type: string
+        requirements:
+          type: array
+          items:
+            type: string
+        deadline:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, title, company, status, createdAt, updatedAt]
+
+    CreateJobBody:
+      type: object
+      properties:
+        title:
+          type: string
+        company:
+          type: string
+        location:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        priority:
+          type: string
+        salary:
+          type: string
+        openings:
+          type: integer
+        description:
+          type: string
+        requirements:
+          type: array
+          items:
+            type: string
+        deadline:
+          type: ["string", "null"]
+      required: [title, company]
+
+    UpdateJobBody:
+      type: object
+      properties:
+        title:
+          type: string
+        company:
+          type: string
+        location:
+          type: string
+        status:
+          type: string
+        priority:
+          type: string
+        salary:
+          type: string
+        openings:
+          type: integer
+        description:
+          type: string
+        deadline:
+          type: ["string", "null"]
+
+    # ── Company ───────────────────────────────────────────────────────────────
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        industry:
+          type: string
+        location:
+          type: string
+        size:
+          type: string
+        status:
+          type: string
+        website:
+          type: string
+        phone:
+          type: string
+        revenue:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, status, createdAt, updatedAt]
+
+    CreateCompanyBody:
+      type: object
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        location:
+          type: string
+        size:
+          type: string
+        status:
+          type: string
+        website:
+          type: string
+        phone:
+          type: string
+        revenue:
+          type: string
+        notes:
+          type: string
+      required: [name]
+
+    UpdateCompanyBody:
+      type: object
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        location:
+          type: string
+        size:
+          type: string
+        status:
+          type: string
+        website:
+          type: string
+        notes:
+          type: string
+
+    # ── Contact ───────────────────────────────────────────────────────────────
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        company:
+          type: string
+        type:
+          type: string
+        linkedIn:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, email, createdAt, updatedAt]
+
+    CreateContactBody:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        company:
+          type: string
+        type:
+          type: string
+        linkedIn:
+          type: string
+        notes:
+          type: string
+      required: [name, email]
+
+    UpdateContactBody:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        company:
+          type: string
+        notes:
+          type: string
+
+    # ── Client ────────────────────────────────────────────────────────────────
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        industry:
+          type: string
+        status:
+          type: string
+        arr:
+          type: number
+        location:
+          type: string
+        primaryContact:
+          type: string
+        openRoles:
+          type: integer
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, status, createdAt, updatedAt]
+
+    CreateClientBody:
+      type: object
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        status:
+          type: string
+        arr:
+          type: number
+        location:
+          type: string
+        primaryContact:
+          type: string
+        openRoles:
+          type: integer
+        notes:
+          type: string
+      required: [name]
+
+    UpdateClientBody:
+      type: object
+      properties:
+        name:
+          type: string
+        industry:
+          type: string
+        status:
+          type: string
+        arr:
+          type: number
+        notes:
+          type: string
+
+    # ── Placement ─────────────────────────────────────────────────────────────
+    Placement:
+      type: object
+      properties:
+        id:
+          type: integer
+        candidate:
+          type: string
+        role:
+          type: string
+        company:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        salary:
+          type: number
+        feeAmount:
+          type: number
+        feePercent:
+          type: number
+        type:
+          type: string
+        status:
+          type: string
+        invoiceNum:
+          type: string
+        paymentStatus:
+          type: string
+        guaranteePeriod:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, candidate, role, company, startDate, status, createdAt, updatedAt]
+
+    CreatePlacementBody:
+      type: object
+      properties:
+        candidate:
+          type: string
+        role:
+          type: string
+        company:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        salary:
+          type: number
+        feeAmount:
+          type: number
+        feePercent:
+          type: number
+        type:
+          type: string
+        status:
+          type: string
+        invoiceNum:
+          type: string
+        paymentStatus:
+          type: string
+        guaranteePeriod:
+          type: string
+      required: [candidate, role, company, startDate]
+
+    UpdatePlacementBody:
+      type: object
+      properties:
+        status:
+          type: string
+        paymentStatus:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        feeAmount:
+          type: number
+
+    # ── Project ───────────────────────────────────────────────────────────────
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        client:
+          type: string
+        status:
+          type: string
+        budget:
+          type: number
+        spent:
+          type: number
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        manager:
+          type: string
+        teamSize:
+          type: integer
+        description:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, client, status, createdAt, updatedAt]
+
+    CreateProjectBody:
+      type: object
+      properties:
+        name:
+          type: string
+        client:
+          type: string
+        status:
+          type: string
+        budget:
+          type: number
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        manager:
+          type: string
+        teamSize:
+          type: integer
+        description:
+          type: string
+      required: [name, client]
+
+    UpdateProjectBody:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+        budget:
+          type: number
+        spent:
+          type: number
+        endDate:
+          type: ["string", "null"]
+        manager:
+          type: string
+
+    # ── Activity ──────────────────────────────────────────────────────────────
+    Activity:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        description:
+          type: string
+        candidate:
+          type: string
+        company:
+          type: string
+        loggedBy:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+      required: [id, type, description, createdAt]
+
+    CreateActivityBody:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        candidate:
+          type: string
+        company:
+          type: string
+        loggedBy:
+          type: string
+        notes:
+          type: string
+      required: [type, description]
+
+    # ── Document ──────────────────────────────────────────────────────────────
+    Document:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        linkedEntity:
+          type: string
+        size:
+          type: string
+        uploadedBy:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+      required: [id, name, type, createdAt]
+
+    CreateDocumentBody:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        linkedEntity:
+          type: string
+        size:
+          type: string
+        uploadedBy:
+          type: string
+        notes:
+          type: string
+      required: [name, type]
+
+    # ── Financial ─────────────────────────────────────────────────────────────
+    Financial:
+      type: object
+      properties:
+        id:
+          type: integer
+        invoiceNum:
+          type: string
+        client:
+          type: string
+        amount:
+          type: number
+        type:
+          type: string
+        status:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        glCode:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, invoiceNum, client, amount, status, createdAt, updatedAt]
+
+    CreateFinancialBody:
+      type: object
+      properties:
+        invoiceNum:
+          type: string
+        client:
+          type: string
+        amount:
+          type: number
+        type:
+          type: string
+        status:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        glCode:
+          type: string
+        notes:
+          type: string
+      required: [invoiceNum, client, amount]
+
+    UpdateFinancialBody:
+      type: object
+      properties:
+        status:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        notes:
+          type: string
+
+    # ── Resource ──────────────────────────────────────────────────────────────
+    Resource:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        title:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        utilization:
+          type: integer
+        status:
+          type: string
+        rate:
+          type: number
+        project:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, title, status, createdAt, updatedAt]
+
+    CreateResourceBody:
+      type: object
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        skills:
+          type: array
+          items:
+            type: string
+        utilization:
+          type: integer
+        status:
+          type: string
+        rate:
+          type: number
+        project:
+          type: string
+      required: [name, title]
+
+    UpdateResourceBody:
+      type: object
+      properties:
+        utilization:
+          type: integer
+        status:
+          type: string
+        project:
+          type: string
+        rate:
+          type: number
+
+    # ── SOW ───────────────────────────────────────────────────────────────────
+    Sow:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        client:
+          type: string
+        value:
+          type: number
+        status:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        description:
+          type: string
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, title, client, value, status, createdAt, updatedAt]
+
+    CreateSowBody:
+      type: object
+      properties:
+        title:
+          type: string
+        client:
+          type: string
+        value:
+          type: number
+        status:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: ["string", "null"]
+        description:
+          type: string
+      required: [title, client, value]
+
+    UpdateSowBody:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: string
+        value:
+          type: number
+        endDate:
+          type: ["string", "null"]
+        notes:
+          type: string
+
+    # ── Change Order ──────────────────────────────────────────────────────────
+    ChangeOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        sowId:
+          type: ["integer", "null"]
+        client:
+          type: string
+        deltaValue:
+          type: number
+        status:
+          type: string
+        requestedBy:
+          type: string
+        approver:
+          type: string
+        rationale:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, title, client, deltaValue, status, createdAt, updatedAt]
+
+    CreateChangeOrderBody:
+      type: object
+      properties:
+        title:
+          type: string
+        sowId:
+          type: ["integer", "null"]
+        client:
+          type: string
+        deltaValue:
+          type: number
+        status:
+          type: string
+        requestedBy:
+          type: string
+        approver:
+          type: string
+        rationale:
+          type: string
+      required: [title, client, deltaValue]
+
+    UpdateChangeOrderBody:
+      type: object
+      properties:
+        status:
+          type: string
+        approver:
+          type: string
+        deltaValue:
+          type: number
+
+    # ── Phase ─────────────────────────────────────────────────────────────────
+    Phase:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        project:
+          type: string
+        status:
+          type: string
+        completion:
+          type: integer
+        owner:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        blockers:
+          type: string
+        criteria:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, name, project, status, createdAt, updatedAt]
+
+    CreatePhaseBody:
+      type: object
+      properties:
+        name:
+          type: string
+        project:
+          type: string
+        status:
+          type: string
+        completion:
+          type: integer
+        owner:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        criteria:
+          type: string
+      required: [name, project]
+
+    UpdatePhaseBody:
+      type: object
+      properties:
+        status:
+          type: string
+        completion:
+          type: integer
+        blockers:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+
+    # ── Forecast ──────────────────────────────────────────────────────────────
+    Forecast:
+      type: object
+      properties:
+        id:
+          type: integer
+        period:
+          type: string
+        revenue:
+          type: number
+        headcount:
+          type: integer
+        scenario:
+          type: string
+        status:
+          type: string
+        assumptions:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, period, revenue, headcount, createdAt, updatedAt]
+
+    CreateForecastBody:
+      type: object
+      properties:
+        period:
+          type: string
+        revenue:
+          type: number
+        headcount:
+          type: integer
+        scenario:
+          type: string
+        status:
+          type: string
+        assumptions:
+          type: string
+      required: [period, revenue, headcount]
+
+    UpdateForecastBody:
+      type: object
+      properties:
+        revenue:
+          type: number
+        headcount:
+          type: integer
+        status:
+          type: string
+        assumptions:
+          type: string
+
+    # ── OnboardingTask ────────────────────────────────────────────────────────
+    OnboardingTask:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        candidate:
+          type: string
+        category:
+          type: string
+        status:
+          type: string
+        assignee:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        notes:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required: [id, title, candidate, status, createdAt, updatedAt]
+
+    CreateOnboardingTaskBody:
+      type: object
+      properties:
+        title:
+          type: string
+        candidate:
+          type: string
+        category:
+          type: string
+        status:
+          type: string
+        assignee:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        notes:
+          type: string
+      required: [title, candidate]
+
+    UpdateOnboardingTaskBody:
+      type: object
+      properties:
+        status:
+          type: string
+        assignee:
+          type: string
+        dueDate:
+          type: ["string", "null"]
+        notes:
+          type: string
+
+    # ── Integration ───────────────────────────────────────────────────────────
+    Integration:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        lastSync:
+          type: ["string", "null"]
+        config:
+          type: string
+      required: [id, name, category, status]

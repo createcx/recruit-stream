@@ -1,0 +1,310 @@
+{
+  "exportMeta": {
+    "project": "RecruitStream",
+    "description": "Staffing & project management platform — full canvas mockup export",
+    "exportedAt": "2026-05-03",
+    "totalPages": 20,
+    "layout": {
+      "columns": 4,
+      "rows": 5,
+      "frameWidth": 1280,
+      "frameHeight": 900,
+      "columnGap": 80,
+      "rowGap": 80
+    },
+    "sharedComponents": [
+      {
+        "name": "AppLayout",
+        "path": "artifacts/mockup-sandbox/src/components/mockups/recruit/_shared/AppLayout.tsx",
+        "description": "Root layout wrapper: left sidebar (240px) + main content area"
+      },
+      {
+        "name": "Sidebar",
+        "path": "artifacts/mockup-sandbox/src/components/mockups/recruit/_shared/Sidebar.tsx",
+        "description": "Left navigation rail with grouped nav items, logo, user avatar"
+      },
+      {
+        "name": "DrawerPanel",
+        "path": "artifacts/mockup-sandbox/src/components/mockups/recruit/_shared/DrawerPanel.tsx",
+        "description": "60%-wide slide-in detail drawer with overlay, scrollable sections, CTA footer"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "groupId": "core-recruiting",
+      "label": "Core Recruiting",
+      "row": 1,
+      "pages": [
+        {
+          "shapeId": "pg-dashboard",
+          "componentName": "Dashboard",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Dashboard.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Dashboard",
+          "canvas": { "x": 0, "y": 0, "w": 1280, "h": 900, "col": 1, "row": 1 },
+          "description": "KPI cards, pipeline funnel, recent activity feed, quick actions",
+          "primaryEntity": null,
+          "hasDrawer": true,
+          "drawerTrigger": "row click / eye icon",
+          "sidebarRoute": "/dashboard"
+        },
+        {
+          "shapeId": "pg-candidates",
+          "componentName": "Candidates",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Candidates.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Candidates",
+          "canvas": { "x": 1360, "y": 0, "w": 1280, "h": 900, "col": 2, "row": 1 },
+          "description": "Candidate list with status badges, skill tags, action icons; drawer shows profile, experience, notes, CTA",
+          "primaryEntity": "Candidate",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/candidates"
+        },
+        {
+          "shapeId": "pg-jobs",
+          "componentName": "Jobs",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Jobs.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Jobs",
+          "canvas": { "x": 2720, "y": 0, "w": 1280, "h": 900, "col": 3, "row": 1 },
+          "description": "Open job listings with role, client, status, applicant count; drawer shows JD, requirements, applicants",
+          "primaryEntity": "Job",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/jobs"
+        },
+        {
+          "shapeId": "pg-companies",
+          "componentName": "Companies",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Companies.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Companies",
+          "canvas": { "x": 4080, "y": 0, "w": 1280, "h": 900, "col": 4, "row": 1 },
+          "description": "Company directory with industry, headcount, open roles; drawer shows overview, contacts, active jobs",
+          "primaryEntity": "Company",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/companies"
+        }
+      ]
+    },
+    {
+      "groupId": "pipeline-placements",
+      "label": "Pipeline & Placements",
+      "row": 2,
+      "pages": [
+        {
+          "shapeId": "pg-pipeline",
+          "componentName": "Pipeline",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Pipeline.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Pipeline",
+          "canvas": { "x": 0, "y": 980, "w": 1280, "h": 900, "col": 1, "row": 2 },
+          "description": "Kanban-style pipeline stages (Sourced → Screening → Interview → Offer → Placed); drawer shows candidate stage detail",
+          "primaryEntity": "PipelineStage",
+          "hasDrawer": true,
+          "drawerTrigger": "card click",
+          "sidebarRoute": "/pipeline"
+        },
+        {
+          "shapeId": "pg-placements",
+          "componentName": "Placements",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Placements.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Placements",
+          "canvas": { "x": 1360, "y": 980, "w": 1280, "h": 900, "col": 2, "row": 2 },
+          "description": "Active and completed placements with start/end dates, billing rate; drawer shows placement financials, notes",
+          "primaryEntity": "Placement",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/placements"
+        },
+        {
+          "shapeId": "pg-projects",
+          "componentName": "Projects",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Projects.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Projects",
+          "canvas": { "x": 2720, "y": 980, "w": 1280, "h": 900, "col": 3, "row": 2 },
+          "description": "Project tracker with status, budget, timeline, team; drawer shows milestones, risks, team roster",
+          "primaryEntity": "Project",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/projects"
+        },
+        {
+          "shapeId": "pg-activities",
+          "componentName": "Activities",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Activities.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Activities",
+          "canvas": { "x": 4080, "y": 980, "w": 1280, "h": 900, "col": 4, "row": 2 },
+          "description": "Activity log / timeline (calls, emails, interviews, notes) with filters; drawer shows activity detail and linked entity",
+          "primaryEntity": "Activity",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/activities"
+        }
+      ]
+    },
+    {
+      "groupId": "clients-contracts",
+      "label": "Clients & Contracts",
+      "row": 3,
+      "pages": [
+        {
+          "shapeId": "pg-contacts",
+          "componentName": "Contacts",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Contacts.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Contacts",
+          "canvas": { "x": 0, "y": 1960, "w": 1280, "h": 900, "col": 1, "row": 3 },
+          "description": "Contact directory (hiring managers, recruiters, vendors); drawer shows contact profile, linked company, recent activity",
+          "primaryEntity": "Contact",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/contacts"
+        },
+        {
+          "shapeId": "pg-clients",
+          "componentName": "Clients",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Clients.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Clients",
+          "canvas": { "x": 1360, "y": 1960, "w": 1280, "h": 900, "col": 2, "row": 3 },
+          "description": "Client accounts with engagement status, ARR, open roles; drawer shows account overview, contacts, financials",
+          "primaryEntity": "Client",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/clients"
+        },
+        {
+          "shapeId": "pg-sows",
+          "componentName": "SOWs",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/SOWs.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/SOWs",
+          "canvas": { "x": 2720, "y": 1960, "w": 1280, "h": 900, "col": 3, "row": 3 },
+          "description": "Statements of Work with client, value, status, term dates; drawer shows SOW details, deliverables, change orders",
+          "primaryEntity": "SOW",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/sows"
+        },
+        {
+          "shapeId": "pg-changeorders",
+          "componentName": "ChangeOrders",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/ChangeOrders.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/ChangeOrders",
+          "canvas": { "x": 4080, "y": 1960, "w": 1280, "h": 900, "col": 4, "row": 3 },
+          "description": "Change order requests linked to SOWs with approval status, delta value; drawer shows rationale, approver, impact",
+          "primaryEntity": "ChangeOrder",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/change-orders"
+        }
+      ]
+    },
+    {
+      "groupId": "docs-financials",
+      "label": "Documents & Financials",
+      "row": 4,
+      "pages": [
+        {
+          "shapeId": "pg-documents",
+          "componentName": "Documents",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Documents.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Documents",
+          "canvas": { "x": 0, "y": 2940, "w": 1280, "h": 900, "col": 1, "row": 4 },
+          "description": "Document library (contracts, resumes, offers) with type tags and linked entity; drawer shows preview, metadata, download",
+          "primaryEntity": "Document",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/documents"
+        },
+        {
+          "shapeId": "pg-financials",
+          "componentName": "Financials",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Financials.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Financials",
+          "canvas": { "x": 1360, "y": 2940, "w": 1280, "h": 900, "col": 2, "row": 4 },
+          "description": "Revenue, invoices, margins by client/project; drawer shows invoice breakdown, payment status, GL codes",
+          "primaryEntity": "Invoice",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/financials"
+        },
+        {
+          "shapeId": "pg-resources",
+          "componentName": "Resources",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Resources.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Resources",
+          "canvas": { "x": 2720, "y": 2940, "w": 1280, "h": 900, "col": 3, "row": 4 },
+          "description": "Resource allocation view — consultants, utilization %, bench status; drawer shows assignment history, skills, rate",
+          "primaryEntity": "Resource",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/resources"
+        },
+        {
+          "shapeId": "pg-planning",
+          "componentName": "Planning",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Planning.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Planning",
+          "canvas": { "x": 4080, "y": 2940, "w": 1280, "h": 900, "col": 4, "row": 4 },
+          "description": "Capacity and hiring plan by quarter; Gantt-style timeline with headcount targets; drawer shows role details, budget",
+          "primaryEntity": "Plan",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/planning"
+        }
+      ]
+    },
+    {
+      "groupId": "ops-settings",
+      "label": "Operations & Settings",
+      "row": 5,
+      "pages": [
+        {
+          "shapeId": "pg-phases",
+          "componentName": "PhasesGates",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/PhasesGates.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/PhasesGates",
+          "canvas": { "x": 0, "y": 3920, "w": 1280, "h": 900, "col": 1, "row": 5 },
+          "description": "Phase & gate tracking for projects — stage completion, sign-off status; drawer shows gate criteria, owner, blockers",
+          "primaryEntity": "Phase",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/phases-gates"
+        },
+        {
+          "shapeId": "pg-forecasting",
+          "componentName": "Forecasting",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Forecasting.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Forecasting",
+          "canvas": { "x": 1360, "y": 3920, "w": 1280, "h": 900, "col": 2, "row": 5 },
+          "description": "Revenue and headcount forecasting with scenario modelling; drawer shows assumptions, actuals vs. forecast",
+          "primaryEntity": "Forecast",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/forecasting"
+        },
+        {
+          "shapeId": "pg-onboarding",
+          "componentName": "Onboarding",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Onboarding.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Onboarding",
+          "canvas": { "x": 2720, "y": 3920, "w": 1280, "h": 900, "col": 3, "row": 5 },
+          "description": "New hire onboarding checklist with task completion, day-1 readiness status; drawer shows task detail, assignee, due date",
+          "primaryEntity": "OnboardingTask",
+          "hasDrawer": true,
+          "drawerTrigger": "eye icon / row click",
+          "sidebarRoute": "/onboarding"
+        },
+        {
+          "shapeId": "pg-integrations",
+          "componentName": "Integrations",
+          "componentPath": "artifacts/mockup-sandbox/src/components/mockups/recruit/Integrations.tsx",
+          "previewUrl": "https://4e4217b0-434b-4c4e-9a1a-625343353d91-00-13gzt0r9vx7cs.kirk.replit.dev/__mockup/preview/recruit/Integrations",
+          "canvas": { "x": 4080, "y": 3920, "w": 1280, "h": 900, "col": 4, "row": 5 },
+          "description": "Third-party integrations catalog (ATS, HRIS, Slack, LinkedIn, Stripe) with connection status and config; drawer shows auth, sync log",
+          "primaryEntity": "Integration",
+          "hasDrawer": true,
+          "drawerTrigger": "settings / connect button",
+          "sidebarRoute": "/integrations"
+        }
+      ]
+    }
+  ]
+}

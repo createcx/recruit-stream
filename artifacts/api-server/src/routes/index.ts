@@ -1,8 +1,44 @@
 import { Router, type IRouter } from "express";
 import healthRouter from "./health";
+import dashboardRouter from "./dashboard";
+import candidatesRouter from "./candidates";
+import jobsRouter from "./jobs";
+import companiesRouter from "./companies";
+import contactsRouter from "./contacts";
+import clientsRouter from "./clients";
+import placementsRouter from "./placements";
+import projectsRouter from "./projects";
+import activitiesRouter from "./activities";
+import documentsRouter from "./documents";
+import financialsRouter from "./financials";
+import resourcesRouter from "./resources";
+import sowsRouter from "./sows";
+import changeOrdersRouter from "./changeOrders";
+import phasesRouter from "./phases";
+import forecastsRouter from "./forecasts";
+import onboardingRouter from "./onboarding";
+import integrationsRouter from "./integrations";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
+router.use(dashboardRouter);
+router.use(candidatesRouter);
+router.use(jobsRouter);
+router.use(companiesRouter);
+router.use(contactsRouter);
+router.use(clientsRouter);
+router.use(placementsRouter);
+router.use(projectsRouter);
+router.use(activitiesRouter);
+router.use(documentsRouter);
+router.use(financialsRouter);
+router.use(resourcesRouter);
+router.use(sowsRouter);
+router.use(changeOrdersRouter);
+router.use(phasesRouter);
+router.use(forecastsRouter);
+router.use(onboardingRouter);
+router.use(integrationsRouter);
 
 export default router;

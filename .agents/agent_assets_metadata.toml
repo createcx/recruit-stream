@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "wJ8cNrqWtZARJCVpwkPpe"
+uri = "file://recruit-stream-canvas-export.json"
+type = "unspecified"
+title = "RecruitStream Canvas Export — Structured JSON"
