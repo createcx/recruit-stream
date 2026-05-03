@@ -270,9 +270,13 @@ export default function Candidates() {
                 </div>
 
                 <div className="mt-4 flex gap-4">
-                  <div className="bg-slate-50 px-3 py-2 rounded-md border border-slate-100 min-w-[100px]">
-                    <div className="text-xs text-slate-500 font-medium uppercase">Created</div>
-                    <div className="text-sm font-semibold text-slate-900">{new Date(selectedCandidate.createdAt).toLocaleDateString()}</div>
+                  <div className="bg-slate-50 px-3 py-2 rounded-md border border-slate-100">
+                    <div className="text-xs text-slate-500 font-medium uppercase">Applications</div>
+                    <div className="text-lg font-semibold text-slate-900">0</div>
+                  </div>
+                  <div className="bg-slate-50 px-3 py-2 rounded-md border border-slate-100">
+                    <div className="text-xs text-slate-500 font-medium uppercase">Placements</div>
+                    <div className="text-lg font-semibold text-slate-900">0</div>
                   </div>
                 </div>
               </div>
@@ -328,11 +332,50 @@ export default function Candidates() {
 
             <div className="h-px bg-slate-200 w-full" />
 
-            {/* Section 5 - Notes */}
+            {/* Section 3 - Recent Submissions */}
             <div className="flex flex-col gap-4">
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold text-slate-900">Recent Submissions</h3>
+                <Button variant="ghost" size="sm" className="text-orange-600 hover:text-orange-700 hover:bg-orange-50">View All</Button>
+              </div>
+              <div className="border border-slate-200 rounded-lg overflow-hidden">
+                <Table>
+                  <TableHeader className="bg-slate-50">
+                    <TableRow>
+                      <TableHead>Role</TableHead>
+                      <TableHead>Company</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Date</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell colSpan={4} className="text-center py-6 text-slate-500">
+                        No submissions yet
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+
+            <div className="h-px bg-slate-200 w-full" />
+
+            {/* Section 4 - Activity Timeline */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-lg font-semibold text-slate-900">Activity Timeline</h3>
+              <div className="text-sm text-slate-500 italic py-4 text-center border border-dashed border-slate-200 rounded-lg">
+                No recent activity.
+              </div>
+            </div>
+
+            <div className="h-px bg-slate-200 w-full" />
+
+            {/* Section 5 - Notes */}
+            <div className="flex flex-col gap-4 pb-8">
               <h3 className="text-lg font-semibold text-slate-900">Notes</h3>
               <Textarea 
-                className="min-h-[150px] bg-yellow-50/50 border-yellow-200 focus-visible:ring-yellow-400 text-slate-700"
+                className="min-h-[100px] bg-yellow-50/50 border-yellow-200 focus-visible:ring-yellow-400 text-slate-700"
                 defaultValue={selectedCandidate.notes}
                 placeholder="Add notes about this candidate..."
               />
